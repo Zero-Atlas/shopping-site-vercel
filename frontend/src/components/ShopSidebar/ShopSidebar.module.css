@@ -1,0 +1,28 @@
+.sidebar {
+  width: 20%;
+}
+.sidebar h1,
+.sidebar h2 {
+  font-weight: 600;
+  font-style: italic;
+}
+.sidebar h2 {
+  font-size: 1.6rem;
+  padding-left: 2rem;
+}
+.main-nav {
+  font-style: italic;
+}
+.main-nav a {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  color: #777;
+  display: block;
+}
+a.main-active {
+  background-color: #222;
+  color: #fff;
+}
+a.sub-active {
+  color: #e2bf70;
+}

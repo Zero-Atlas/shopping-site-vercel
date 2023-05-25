@@ -1,0 +1,14 @@
+.title {
+  font-style: italic;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+}
+.title p {
+  color: #b0b0bf;
+  font-size: 1.4rem;
+}
+.title h1 {
+  color: #827f7e;
+  font-size: 2rem;
+  font-weight: 600;
+}

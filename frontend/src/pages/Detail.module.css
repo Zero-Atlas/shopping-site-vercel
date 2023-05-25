@@ -1,0 +1,85 @@
+.detail {
+  font-style: italic;
+}
+.product-detail {
+  display: flex;
+  gap: 4rem;
+  margin-top: 6rem;
+}
+.review {
+  display: flex;
+  flex-basis: 50%;
+  gap: 2rem;
+}
+.review img {
+  width: 100%;
+}
+.img-list {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  gap: 1rem;
+}
+
+.textbox {
+  flex-basis: 50%;
+}
+.textbox h1 {
+  font-weight: 500;
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+}
+.price {
+  margin-bottom: 2rem;
+  color: #888;
+  font-size: 1.8rem;
+}
+.short-desc {
+  color: #888;
+  margin-bottom: 2rem;
+}
+.category {
+  font-weight: 500;
+}
+.category span {
+  color: #888;
+  margin-left: 1rem;
+}
+
+.description button {
+  background-color: #353535;
+  color: #fff;
+  font-style: italic;
+  border: none;
+  padding: 1rem 2rem;
+}
+.description button:hover {
+  box-shadow: 0 2px 2px 2px #333;
+}
+.description button:active {
+  box-shadow: none;
+}
+.description h2 {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.desc-list {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+}
+.desc-list li::before {
+  content: "-";
+  float: left;
+}
+.desc-list li {
+  margin-left: 1rem;
+  color: #888;
+}
+.desc-list li:first-child {
+  text-transform: uppercase;
+  margin: 0;
+}
+.desc-list li:first-child::before {
+  content: none;
+}
