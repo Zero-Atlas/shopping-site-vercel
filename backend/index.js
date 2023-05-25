@@ -53,7 +53,7 @@ const app = express();
 // middleware init
 app.use(
   cors({
-    origin: "*",
+    origin: ["http://shopping-site-vercel.vercel.app","http://shopping-site-vercel-admin.vercel.app"],
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
   })
