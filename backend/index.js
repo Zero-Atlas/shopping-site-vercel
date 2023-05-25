@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const multer = require("multer");
-const morgan = require("morgan");
+// const morgan = require("morgan");
 
 const authRouter = require("./router/auth");
 const adminRouter = require("./router/admin");
@@ -76,11 +76,11 @@ app.use(
     },
   })
 );
-const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, "access.log"),
-  { flags: "a" }
-);
-app.use(morgan("combined", { stream: accessLogStream }));
+// const accessLogStream = fs.createWriteStream(
+//   path.join(__dirname, "access.log"),
+//   { flags: "a" }
+// );
+// app.use(morgan("combined", { stream: accessLogStream }));
 
 //auth init
 app.use((req, res, next) => {
