@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const { env } = require("process");
+const process = require("process");
 
 const express = require("express");
 const cors = require("cors");
@@ -17,7 +17,7 @@ const productRouter = require("./router/product");
 const orderRouter = require("./router/order");
 const User = require("./model/user");
 
-const MONGODB_URI = `mongodb+srv://${env.MONGO_USER}:${env.MONGO_PASSWORD}@shopping-site-vercel.wbs62ys.mongodb.net/${env.MONGO_DATABASE}`;
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@shopping-site-vercel.wbs62ys.mongodb.net/${process.env.MONGO_DATABASE}`;
 // multer init
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -143,7 +143,7 @@ app.use(function (req, res, next) {
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
-    const server = app.listen(env.PORT || 5000);
+    const server = app.listen(process.env.PORT || 5000);
     const io = require("./socket").init(server);
     io.on("connection", (socket) => {
       console.log("Client connected");
