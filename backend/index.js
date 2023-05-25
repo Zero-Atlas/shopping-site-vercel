@@ -71,6 +71,8 @@ app.use(
     saveUninitialized: false,
     store: store,
     cookie: {
+      sameSite : "none",
+      domain: ["shopping-site-vercel.vercel.app", "shopping-site-vercel-admin.vercel.app"]
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
     },
