@@ -1,0 +1,7 @@
+{
+  "env": {
+    "MONGO_USER": "shoppingsitevercel",
+    "MONGO_PASSWORD": "Yt6Haf4wLEKUZkS7",
+    "MONGO_DATABASE": "shoping-site-vercel"
+  }
+}
