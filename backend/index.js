@@ -72,7 +72,7 @@ app.use(
     store: store,
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       sameSite: "none",
       domain: "https://shopping-site-vercel.vercel.app",
     },
