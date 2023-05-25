@@ -17,7 +17,7 @@ const productRouter = require("./router/product");
 const orderRouter = require("./router/order");
 const User = require("./model/user");
 
-const MONGODB_URI = `mongodb+srv://${env.MONGODB_USER}:${env.MONGODB_PASSWORD}@shopping-site-vercel.wbs62ys.mongodb.net/${env.MONGODB_DATABASE}`;
+const MONGODB_URI = `mongodb+srv://${env.MONGO_USER}:${env.MONGO_PASSWORD}@shopping-site-vercel.wbs62ys.mongodb.net/${env.MONGO_DATABASE}`;
 // multer init
 const store = new MongoDBStore({
   uri: MONGODB_URI,
