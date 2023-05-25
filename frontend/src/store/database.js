@@ -1,1 +1,1 @@
-export const baseUrl = "http://localhost:5000";
+export const baseUrl = "https://shopping-site-vercel-bjomcwkn1-zero-atlas.vercel.app";
