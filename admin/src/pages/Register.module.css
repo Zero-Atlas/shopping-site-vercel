@@ -1,0 +1,26 @@
+.register-bg {
+  padding: 8rem 0;
+  background-image: url("../../public/assets/images/banner1.jpg");
+  background-repeat: repeat-y;
+  background-size: contain;
+}
+.card {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 4rem;
+  background-color: #fff;
+}
+.register-bg h1 {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+}
+.register-bg p {
+  text-align: center;
+}
+.register-bg span {
+  color: #555;
+}
+.register-bg span:hover {
+  cursor: pointer;
+}

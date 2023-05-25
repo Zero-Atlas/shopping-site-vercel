@@ -1,0 +1,90 @@
+.modal {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  transform: translate(-10%, -20%);
+  z-index: 5;
+  background-color: #fff;
+  width: 40rem;
+  overflow: hidden;
+}
+.container {
+  padding: 2rem;
+}
+.modal i {
+  font-size: 1.8rem;
+}
+
+/* header */
+.header .container {
+  display: flex;
+  justify-content: space-between;
+}
+.header h3 {
+  font-size: 1.8rem;
+}
+.header p {
+  font-size: 1.2rem;
+  background-color: #e4e7ea;
+  color: #555;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-style: italic;
+}
+
+/* body */
+.body {
+  height: 30rem;
+  overflow: auto;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.body .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 90%;
+}
+.body p {
+  background-color: #0084ff;
+  color: #fff;
+  font-style: italic;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+/* footer */
+.footer {
+  background-color: #f9fafb;
+}
+.footer form {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+.footer button {
+  background-color: #f9fafb;
+  border: none;
+}
+.footer button:hover {
+  cursor: pointer;
+}
+label,
+button.send {
+  color: #0084ff;
+}
+.footer input {
+  border: none;
+}
+.footer input:focus-visible {
+  outline: none;
+}
+
+button:disabled {
+  color: #ccc;
+}
+button:disabled:hover {
+  cursor: default;
+}

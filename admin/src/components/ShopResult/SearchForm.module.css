@@ -1,0 +1,14 @@
+.form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.form input {
+  padding: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.form select {
+  padding: 0.3rem;
+}

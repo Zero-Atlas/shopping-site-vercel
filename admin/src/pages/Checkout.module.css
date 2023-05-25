@@ -1,0 +1,7 @@
+.checkout {
+  font-style: italic;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}

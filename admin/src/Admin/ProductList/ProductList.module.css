@@ -1,0 +1,40 @@
+.search{
+  padding: 0.8rem;
+  border-radius: 5px;
+  width: 30%;
+  border: 1px solid #777;
+  margin-top: 1rem;
+}
+
+.table{
+  text-align: left;
+  width: 100%;
+  margin: 4rem 0;
+  border-collapse: collapse;
+}
+.table td, .table th{
+  border: 1px solid #a2d6fe;
+  padding: 1rem;
+  vertical-align: top;
+}
+
+.table tbody tr:nth-child(odd){
+  background-color: #F4F8FB;
+}
+
+.table img{width: 100%;display: block;}
+.image{width: 8rem;}
+
+.edit button{
+  border-radius: 5px;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  color: #fff;
+}
+.update-btn{
+  margin-right: 0.5rem;
+  background-color: #22ca80;
+}
+.delete-btn{
+  background-color: #ff4f70;
+}

@@ -1,0 +1,33 @@
+.container {
+  flex-basis: 35%;
+  background-color: #f8f9fa;
+  padding: 4rem;
+  font-style: italic;
+  color: #333;
+  align-self: flex-start;
+}
+.title {
+  font-weight: 600;
+  font-size: 1.8rem;
+  letter-spacing: 0.1rem;
+}
+.item {
+  font-weight: 500;
+  border-bottom: 1px solid #aaa;
+  padding: 1rem 0;
+}
+.item span {
+  font-weight: 400;
+  color: #888;
+}
+
+.total {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+.total span {
+  font-weight: 400;
+  font-size: 1.8rem;
+}
