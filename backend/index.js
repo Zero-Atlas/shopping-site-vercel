@@ -65,6 +65,7 @@ app.use(
 );
 app.use("/images", express.static(path.join(__dirname, "images")));
 //----------------------------------- session ----------------------------------
+app.set("trust proxy", 1);
 app.use(
   session({
     secret: "session secret",
