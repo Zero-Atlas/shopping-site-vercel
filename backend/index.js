@@ -70,9 +70,11 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: store,
+    name:"shoppingSiteSession",
     cookie: {
       httpOnly: true,
       secure: false,
+      sameSite: false,
     },
   })
 );
