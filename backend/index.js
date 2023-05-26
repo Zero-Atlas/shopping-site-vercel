@@ -9,7 +9,6 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const multer = require("multer");
-// const morgan = require("morgan");
 
 const authRouter = require("./router/auth");
 const adminRouter = require("./router/admin");
@@ -18,7 +17,8 @@ const orderRouter = require("./router/order");
 const User = require("./model/user");
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@shopping-site-vercel.wbs62ys.mongodb.net/${process.env.MONGO_DATABASE}`;
-// multer init
+
+//---------------------------------- multer init ----------------------------------------------
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions",
@@ -50,7 +50,7 @@ const fileFilter = (req, file, cb) => {
 
 const app = express();
 
-// middleware init
+//--------------------------------------- middleware init -------------------------------------------------
 app.use(
   cors({
     origin: ["https://shopping-site-vercel.vercel.app", "https://shopping-site-vercel-admin.vercel.app"],
@@ -64,6 +64,7 @@ app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
 );
 app.use("/images", express.static(path.join(__dirname, "images")));
+//----------------------------------- session ----------------------------------
 app.use(
   session({
     secret: "session secret",
@@ -78,16 +79,11 @@ app.use(
     },
   })
 );
-// const accessLogStream = fs.createWriteStream(
-//   path.join(__dirname, "access.log"),
-//   { flags: "a" }
-// );
-// app.use(morgan("combined", { stream: accessLogStream }));
 
-//auth init
+
+//---------------------------------------------- auth init -------------------------------------------------
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
-  // res.locals.csrfToken = req.csrfToken();
   next();
 });
 
@@ -114,7 +110,7 @@ app.use((req, res, next) => {
     });
 });
 
-// Router connect
+//------------------------------------------------- Router connect ----------------------------------------------
 app.use(authRouter);
 app.use("/product", productRouter);
 app.use("/order", orderRouter);
@@ -141,7 +137,7 @@ app.use(function (req, res, next) {
   res.type("txt").send("Not found");
 });
 
-// server init
+//---------------------------------------------------- server init -------------------------------------------------------
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
