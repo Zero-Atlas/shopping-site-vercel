@@ -73,7 +73,7 @@ app.use(
     name:"shoppingSiteSession",
     cookie: {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: false,
     },
   })
