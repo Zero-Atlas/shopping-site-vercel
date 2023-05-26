@@ -72,9 +72,7 @@ app.use(
     store: store,
     cookie: {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      domain: "https://shopping-site-vercel.vercel.app",
+      secure: false,
     },
   })
 );
