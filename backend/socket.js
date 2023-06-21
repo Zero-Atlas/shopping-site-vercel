@@ -8,7 +8,9 @@ module.exports = {
         methods: ["GET", "POST", "OPTION"],
         credentials: true,
         allowedHeaders: ["my-custom-header"],
+        transports: ['websocket', 'polling'],
       },
+      allowEIO3: true 
     });
     return io;
   },
