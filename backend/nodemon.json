@@ -2,6 +2,7 @@
   "env": {
     "MONGO_USER": "shoppingsitevercel",
     "MONGO_PASSWORD": "Yt6Haf4wLEKUZkS7",
+    "BASE_URL": "http://localhost:5000/",
     "MONGO_DATABASE": "shoping-site-vercel"
   }
 }

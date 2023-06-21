@@ -11,14 +11,14 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const multer = require("multer");
 
 const authRouter = require("./router/auth");
+const chatRouter = require("./router/chat");
 const adminRouter = require("./router/admin");
 const productRouter = require("./router/product");
 const orderRouter = require("./router/order");
 const User = require("./model/user");
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@shopping-site-vercel.wbs62ys.mongodb.net/${process.env.MONGO_DATABASE}`;
-
-//---------------------------------- multer init ----------------------------------------------
+// multer init
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions",
@@ -26,7 +26,7 @@ const store = new MongoDBStore({
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images");
+    cb(null, "public/photos");
   },
   filename: (req, file, cb) => {
     cb(
@@ -50,10 +50,10 @@ const fileFilter = (req, file, cb) => {
 
 const app = express();
 
-//--------------------------------------- middleware init -------------------------------------------------
+// middleware init
 app.use(
   cors({
-    origin: ["https://shopping-site-vercel.vercel.app", "https://shopping-site-vercel-admin.vercel.app"],
+    origin: ["http://localhost:3000", "http://localhost:3001"],
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
     credentials: true,
   })
@@ -61,28 +61,27 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
-  multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
+  multer({ storage: fileStorage, fileFilter: fileFilter }).array("photo")
 );
-app.use("/images", express.static(path.join(__dirname, "images")));
-//----------------------------------- session ----------------------------------
+app.use("/public/photos", express.static(path.join(__dirname, "public/photos")));
+
 app.set("trust proxy", 1);
 app.use(
   session({
     secret: "session secret",
     resave: false,
     saveUninitialized: false,
+    name: "shoppingSiteSession",
     store: store,
-    name:"shoppingSiteSession",
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
+      secure: false,
+      sameSite: "lax",
     },
   })
 );
 
-
-//---------------------------------------------- auth init -------------------------------------------------
+//auth init
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
   next();
@@ -111,15 +110,16 @@ app.use((req, res, next) => {
     });
 });
 
-//------------------------------------------------- Router connect ----------------------------------------------
+// Router connect
 app.use(authRouter);
 app.use("/product", productRouter);
 app.use("/order", orderRouter);
+app.options("/admin", cors()); //enable cors for admin
 app.use("/admin", adminRouter);
+app.use("/chat", chatRouter);
 
 //error handler
 app.use((error, req, res, next) => {
-  console.log(error);
   res.status(500).json({
     message: "Some error occured on server",
   });
@@ -127,7 +127,6 @@ app.use((error, req, res, next) => {
 
 app.use(function (req, res, next) {
   res.status(404);
-  console.log(error);
   // respond with json
   if (req.accepts("json")) {
     res.json({ error: "Not found" });
@@ -138,14 +137,14 @@ app.use(function (req, res, next) {
   res.type("txt").send("Not found");
 });
 
-//---------------------------------------------------- server init -------------------------------------------------------
+// server init
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
     const server = app.listen(process.env.PORT || 5000);
     const io = require("./socket").init(server);
     io.on("connection", (socket) => {
-      console.log("Client connected");
+      console.log("server connected");
     });
   })
   .catch((err) => {

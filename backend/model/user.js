@@ -12,6 +12,7 @@ const userSchema = mongoose.Schema({
       quantity: { type: Number },
     },
   ],
+  chatRoom: { type: mongoose.Types.ObjectId, ref: "Chat" },
 });
 
 // methods

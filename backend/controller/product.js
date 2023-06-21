@@ -24,7 +24,7 @@ exports.getDetail = (req, res, next) => {
   Product.findById(prodId)
     .then((product) => {
       if (!product) {
-        return next();
+        return res.status(404).json({errorMsg:'Product not found.'})
       }
       return res.json(product);
     })

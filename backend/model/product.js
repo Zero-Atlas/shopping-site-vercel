@@ -5,6 +5,7 @@ const productSchema = mongoose.Schema({
   short_desc: { type: String, require: true },
   long_desc: { type: String, require: true },
   price: { type: Number, require: true },
+  stock: { type: Number },
   category: { type: String, require: true },
   img1: { type: String },
   img2: { type: String },

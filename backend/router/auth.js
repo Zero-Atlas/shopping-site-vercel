@@ -71,6 +71,7 @@ router.get("/check-auth", (req, res, next) => {
       name: req.session.user.fullName,
       email: req.session.user.email,
       phone: req.session.user.phone,
+      chatRoom: req.session.user.chatRoom,
     });
   }
   return res.status(200).json({ isAuthenticated: "false" });

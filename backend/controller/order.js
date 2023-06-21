@@ -1,4 +1,5 @@
 const Order = require("../model/order");
+const Product = require("../model/product");
 const { validationResult } = require("express-validator");
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
@@ -40,7 +41,16 @@ exports.postNewOrder = (req, res, next) => {
     userId: req.user._id,
   });
 
-  console.log(order);
+  cart.map((p) => {
+    Product.findById(p.productId)
+      .then((product) => {
+        if (!product) return next("Product not found");
+        product.stock -= p.quantity;
+        if (product.stock < 0) return next("Not enough stock");
+        return product.save();
+      })
+      .catch((err) => next(err));
+  });
 
   return order
     .save()
