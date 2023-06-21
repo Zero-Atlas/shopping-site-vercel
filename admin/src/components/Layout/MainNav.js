@@ -38,27 +38,17 @@ export default function MainNav() {
                   isActive ? classes.active : undefined
                 }
               >
-                Home
+                Dashboard
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/shop"
+                to="/chat"
                 className={({ isActive }) =>
                   isActive ? classes.active : undefined
                 }
               >
-                Shop
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/history"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                History
+                Chat
               </NavLink>
             </li>
           </ul>
@@ -74,25 +64,15 @@ export default function MainNav() {
                     isActive ? classes.active : undefined
                   }
                 >
-                  <i className="fa-solid fa-user"></i>{" "}
-                  Admin Mode
+                  Products
                 </NavLink>
               </li>
             )}
-            <li>
-              <NavLink
-                to="/cart"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                <i className="fa-solid fa-cart-flatbed"></i> Cart
-              </NavLink>
-            </li>
+
             {!isAuth && (
               <li>
                 <NavLink
-                  to="/login"
+                  to="/"
                   className={({ isActive }) =>
                     isActive ? classes.active : undefined
                   }

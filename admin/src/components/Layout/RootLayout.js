@@ -1,17 +1,11 @@
-import { useState } from "react";
-import { createPortal } from "react-dom";
-import { Outlet } from "react-router-dom";
-import ChatModal from "../ChatModal/ChatModal";
+
+import { Outlet, useLoaderData } from "react-router-dom";
 import Footer from "./Footer";
 import MainNav from "./MainNav";
 import classes from "./RootLayout.module.css";
 import { baseUrl } from "../../store/database";
 
-export default function RootLayout() {
-  const [showChat, setShowChat] = useState(false);
-  const clickChatHandler = () => {
-    setShowChat((prev) => !prev);
-  };
+export default function RootLayout() {  
   return (
     <>
       <MainNav />
@@ -19,10 +13,6 @@ export default function RootLayout() {
         <Outlet />
       </main>
       <Footer />
-      <button className={classes.chat} onClick={clickChatHandler}>
-        <i className="fa-brands fa-facebook-messenger"></i>
-      </button>
-      {showChat && createPortal(<ChatModal />, document.getElementById("chat"))}
     </>
   );
 }

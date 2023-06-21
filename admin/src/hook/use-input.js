@@ -22,6 +22,7 @@ function useInput(validateValue) {
     isValid: valueIsValid,
     changeHandler,
     blurHandler,
+    setEnteredValue,
     reset,
     isTouch,
   };

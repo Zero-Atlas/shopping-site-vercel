@@ -1,5 +1,5 @@
-import { Link, redirect, useActionData } from "react-router-dom";
-import RegisterForm from "../components/RegisterForm/RegisterForm";
+import { redirect, useActionData } from "react-router-dom";
+import LoginForm from "../components/LoginForm/LoginForm";
 import Card from "../components/UI/Card";
 import classes from "./Login.module.css";
 import { baseUrl } from "../store/database";
@@ -9,13 +9,7 @@ export default function LoginPage() {
     <div className={classes["login-bg"]}>
       <Card className={classes.card}>
         <h1>Sign In</h1>
-        <RegisterForm isRegister={false} formError={formError} />
-        <p>
-          {"Register? "}
-          <Link to="/register" className={classes.mod}>
-            Click
-          </Link>
-        </p>
+        <LoginForm formError={formError} />
       </Card>
     </div>
   );
@@ -28,7 +22,7 @@ export async function action({ request }) {
     password: receive.get("password"),
   };
 
-  const respon = await fetch(`${baseUrl}/login`, {
+  const respon = await fetch(`${baseUrl}/admin/login`, {
     method: "post",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
