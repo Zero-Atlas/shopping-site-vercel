@@ -2,19 +2,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout, {
   loader as rootLoader,
 } from "./components/Layout/RootLayout";
-import CartPage from "./pages/Cart";
 import ErrorPage from "./pages/ErrorPage";
-import CheckoutPage, { action as checkoutAction } from "./pages/Checkout";
-import DetailPage, { loader as detailLoader } from "./pages/Detail";
-import HomePage, { loader as trendingLoader } from "./pages/Home";
 import LoginPage, { action as loginAction } from "./pages/Login";
-import RegisterPage, { action as registerAction } from "./pages/Register";
-import ShopPage, { loader as shopLoader } from "./pages/Shop";
-import HistoryPage, { loader as historyLoader } from "./pages/History";
 import AdminRoot, { loader as adminRootLoader } from "./Admin/AdminRoot";
 import ProductList, {
   loader as listLoader,
 } from "./Admin/ProductList/ProductList";
+import ChatPage, { loader as chatLoader } from "./pages/ChatPage";
+import Dashboard from "./pages/Dashboard";
+import ProductForm, {
+  loader as productFormLoader,
+} from "./Admin/ProductForm/ProductForm";
 
 const router = createBrowserRouter([
   {
@@ -23,18 +21,9 @@ const router = createBrowserRouter([
     id: "root",
     loader: rootLoader,
     children: [
-      { index: true, element: <HomePage />, loader: trendingLoader },
-      { path: "shop", element: <ShopPage />, loader: shopLoader },
-      { path: "history", element: <HistoryPage />, loader: historyLoader },
-      {
-        path: "detail/:productId",
-        element: <DetailPage />,
-        loader: detailLoader,
-      },
-      { path: "cart", element: <CartPage /> },
-      { path: "checkout", element: <CheckoutPage />, action: checkoutAction },
-      { path: "register", element: <RegisterPage />, action: registerAction },
+      { index: true, element: <Dashboard /> },
       { path: "login", element: <LoginPage />, action: loginAction },
+      { path: "chat", element: <ChatPage />, loader: chatLoader },
       { path: "error", element: <ErrorPage /> },
       {
         path: "admin",
@@ -43,6 +32,12 @@ const router = createBrowserRouter([
         loader: adminRootLoader,
         children: [
           { index: true, element: <ProductList />, loader: listLoader },
+          { path: "new", element: <ProductForm action="new" /> },
+          {
+            path: "edit/:productId",
+            element: <ProductForm action="edit" />,
+            loader: productFormLoader,
+          },
         ],
       },
     ],
