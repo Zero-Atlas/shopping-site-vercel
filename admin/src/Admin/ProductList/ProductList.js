@@ -1,4 +1,4 @@
-import { json, useLoaderData } from "react-router-dom";
+import { Link, json, useLoaderData, useNavigate } from "react-router-dom";
 
 import classes from "./ProductList.module.css";
 import { useEffect, useState } from "react";
@@ -7,11 +7,35 @@ import { price } from "../../components/UI/transform-text";
 
 export default function ProductList() {
   const products = useLoaderData();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [showedProduct, setShowedProduct] = useState(products);
 
   const searchChangeHandler = (event) => {
     setSearch(event.target.value);
+  };
+
+  const deleteProductHandler = (prodId) => {
+
+    if (window.confirm("Are you sure to delete this product?")) {
+      fetch(`${baseUrl}/admin/product/delete/${prodId}`, {
+        method: "delete",
+        credentials: "include",
+      })
+        .then((respon) => {
+          if (!respon.ok) {
+            throw new Error("Fail to delete.");
+          }
+          return respon.json();
+        })
+        .then((data) => {
+          alert(data.message);
+          return navigate("/admin");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
   //search function
@@ -57,13 +81,26 @@ export default function ProductList() {
                 </td>
                 <td>{product.category}</td>
                 <td className={classes.edit}>
-                  <button className={classes["update-btn"]}>Update</button>
-                  <button className={classes["delete-btn"]}>Delete</button>
+                  <Link
+                    to={`/admin/edit/${product._id}`}
+                    className={classes["update-btn"]}
+                  >
+                    Update
+                  </Link>
+                  <button
+                    onClick={deleteProductHandler.bind(null, product._id)}
+                    className={classes["delete-btn"]}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
         </tbody>
       </table>
+      <Link to="/admin/new" className={classes.new}>
+        Add New
+      </Link>
     </>
   );
 }
@@ -79,4 +116,3 @@ export async function loader() {
   const data = await respon.json();
   return data;
 }
-
