@@ -1,5 +1,5 @@
 import { Outlet, json, useLoaderData, useNavigate } from "react-router-dom";
-import PageHeader from "../components/ShopHeader/PageHeader";
+import PageHeader from "../components/PageHeader/PageHeader";
 import { useEffect } from "react";
 import { baseUrl } from "../store/database";
 
@@ -40,5 +40,5 @@ export async function loader() {
     throw json({ message: "Could not get product data" }, { status: 500 });
   }
   const data = await respon.json();
-  return { level: data.level };
+  return data;
 }
