@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart";
 import { Form } from "react-router-dom";
 import classes from "./DetailForm.module.css";
 export default function DetailForm(props) {
+  const cartList = useSelector((state) => state.cart.listCart);
+  let currentProductInCart = 0;
+  cartList.forEach((p) => {
+    if (p.product._id === props.product._id) currentProductInCart = p.quantity;
+  });
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const decreaseHandler = () => {
@@ -22,25 +27,32 @@ export default function DetailForm(props) {
     alert(`${quantity} ${props.product.name} added to your cart!`);
   };
   return (
-    <Form className={classes.form}>
-      <label htmlFor="detail-quantity">QUANTITY:</label>
-      <button className={classes.arrow} onClick={decreaseHandler}>
-        <i className="fa-solid fa-caret-left"></i>
-      </button>
-      <input
-        type="text"
-        name="quantity"
-        id="detail-quantity"
-        value={quantity}
-        onChange={quantityChangeHandler}
-        readOnly
-      />
-      <button className={classes.arrow} onClick={increaseHandler}>
-        <i className="fa-solid fa-caret-right"></i>
-      </button>
-      <button className={classes.add} onClick={addHandler}>
-        Add to cart
-      </button>
-    </Form>
+    <div>
+      <p className={classes.stock}>Max stock: {props.product.stock}</p>
+      <Form className={classes.form}>
+        <label htmlFor="detail-quantity">QUANTITY:</label>
+        <button className={classes.arrow} onClick={decreaseHandler}>
+          <i className="fa-solid fa-caret-left"></i>
+        </button>
+        <input
+          type="text"
+          name="quantity"
+          id="detail-quantity"
+          value={quantity}
+          onChange={quantityChangeHandler}
+          readOnly
+        />
+        <button className={classes.arrow} onClick={increaseHandler}>
+          <i className="fa-solid fa-caret-right"></i>
+        </button>
+        <button
+          disabled={quantity + currentProductInCart > props.product.stock}
+          className={classes.add}
+          onClick={addHandler}
+        >
+          Add to cart
+        </button>
+      </Form>
+    </div>
   );
 }

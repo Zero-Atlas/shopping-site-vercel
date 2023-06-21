@@ -16,7 +16,8 @@ export default function CartPage() {
       dispatch(cartActions.delete(index));
     }
   };
-  const increaseHandler = (index) => {
+  const increaseHandler = (index,disabled) => {
+    if(disabled) return
     dispatch(cartActions.update({ update: 1, index: index }));
   };
   const deleteHandler = (index) => {

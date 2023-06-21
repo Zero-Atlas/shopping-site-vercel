@@ -36,8 +36,9 @@ export default function CartTable(props) {
                     </button>
                     <p>{item.quantity}</p>
                     <button
+                      disable={(item.quantity>=item.product.stock).toString()}
                       className={classes.arrow}
-                      onClick={props.onIncrease.bind(null, i)}
+                      onClick={props.onIncrease.bind(null, i,item.quantity>=item.product.stock)}
                     >
                       <i className="fa-solid fa-caret-right"></i>
                     </button>

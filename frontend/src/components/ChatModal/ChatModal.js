@@ -1,17 +1,32 @@
 import { useState } from "react";
+
 import Card from "../UI/Card";
+import { baseUrl } from "../../store/database";
+
 import classes from "./ChatModal.module.css";
 
-export default function ChatModal() {
+export default function ChatModal(props) {
   const [message, setMessage] = useState("");
-  const [messageList, setMessageList] = useState([]);
   const messageChangeHandler = (event) => {
     setMessage(event.target.value);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    setMessageList((prev) => [...prev, message]);
+
+    props.setMessageList((prev) => [
+      ...prev,
+      { message: message, isCustomer: true },
+    ]);
+    fetch(`${baseUrl}/chat/send`, {
+      method: "post",
+      credentials: "include",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ message: message }),
+    }).catch((err) => {
+      console.log(err);
+    });
+
     setMessage("");
   };
   return (
@@ -24,9 +39,15 @@ export default function ChatModal() {
       </div>
       <div className={classes.body}>
         <div className={classes.container}>
-          {messageList.map((mes, i) => (
-            <p key={i}>{mes}</p>
-          ))}
+          {props.messageList &&
+            props.messageList.map((mes, i) => (
+              <p
+                className={mes.isCustomer ? classes.customer : classes.helper}
+                key={i}
+              >
+                {mes.message}
+              </p>
+            ))}
         </div>
       </div>
       <div className={classes.footer}>
@@ -37,17 +58,28 @@ export default function ChatModal() {
             </label>
             <input
               type="text"
+              name="chatMessage"
               onChange={messageChangeHandler}
               value={message}
               placeholder="Enter Message!"
             />
-            <button disabled={true} className={classes.file}>
+            <div
+              disabled={true}
+              className={
+                classes.file + " " + classes.btn + " " + classes.disabled
+              }
+            >
               <i className="fa-solid fa-paperclip"></i>
-            </button>
-            <button disabled={true} className={classes.emoji}>
+            </div>
+            <div
+              disabled={true}
+              className={
+                classes.emoji + " " + classes.btn + " " + classes.disabled
+              }
+            >
               <i className="fa-solid fa-face-smile"></i>
-            </button>
-            <button className={classes.send}>
+            </div>
+            <button className={classes.send + " " + classes.btn} type="submit">
               <i className="fa-solid fa-paper-plane"></i>
             </button>
           </form>

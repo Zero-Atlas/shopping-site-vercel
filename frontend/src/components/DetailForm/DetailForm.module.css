@@ -1,3 +1,6 @@
+.stock {
+  color: #888;
+}
 .form {
   border: 1px solid #888;
   display: inline-block;
@@ -35,6 +38,11 @@ button.add {
   font-size: 1.6rem;
   font-style: italic;
   font-weight: 400;
+}
+button.add:disabled{
+  background-color: #888;
+  color: #fff;
+  cursor: not-allowed;
 }
 button.arrow {
   padding: 1rem;

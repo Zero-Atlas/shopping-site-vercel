@@ -1,7 +1,7 @@
 .modal {
   position: fixed;
-  right: 0;
-  bottom: 0;
+  right: 4rem;
+  bottom: -6rem;
   transform: translate(-10%, -20%);
   z-index: 5;
   background-color: #fff;
@@ -42,8 +42,7 @@
 .body .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  width: 90%;
+  width: 100%;
 }
 .body p {
   background-color: #0084ff;
@@ -53,6 +52,12 @@
   margin-bottom: 0.5rem;
   display: inline-block;
   border-radius: 5px;
+}
+.body p.customer{
+  align-self: flex-end;
+}
+.body p.helper{
+  align-self: flex-start;
 }
 
 /* footer */
@@ -64,15 +69,15 @@
   gap: 1rem;
   width: 100%;
 }
-.footer button {
+.footer .btn {
   background-color: #f9fafb;
   border: none;
 }
-.footer button:hover {
+.footer .btn:hover {
   cursor: pointer;
 }
 label,
-button.send {
+.btn.send {
   color: #0084ff;
 }
 .footer input {
@@ -82,9 +87,9 @@ button.send {
   outline: none;
 }
 
-button:disabled {
-  color: #ccc;
+.btn.disabled {
+  color: #ccc !important;
 }
-button:disabled:hover {
+.btn.disabled:hover {
   cursor: default;
 }
