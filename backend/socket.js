@@ -4,8 +4,8 @@ module.exports = {
   init: (server) => {
     io = require("socket.io")(server, {
       cors: {
-        origin: ["https://shopping-site-vercel.vercel.app","https://shopping-site-vercel-admin.vercel.app"],
-        methods: ["GET", "POST", "OPTION"],
+        origin: "*",
+        methods: "*",
         credentials: true,
         allowedHeaders: ["my-custom-header"],
       },
