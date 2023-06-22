@@ -1,0 +1,40 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form input {
+  padding: 2rem;
+  font-size: 1.8rem;
+  border: 1px solid #ddd;
+}
+.form input:focus-visible {
+  outline: none;
+  border: 2px solid #aaa;
+}
+
+.form button {
+  border: none;
+  background-color: #494949;
+  color: #ddd;
+  padding: 2rem;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+.form button:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 2px 2px #ddd;
+}
+.form button:active {
+  box-shadow: none;
+}
+.form button:disabled {
+  cursor: default;
+  background-color: #444;
+}
+.error {
+  font-size: 1.6rem;
+  color: red;
+  margin: 0.5rem;
+  display: inline-block;
+}
