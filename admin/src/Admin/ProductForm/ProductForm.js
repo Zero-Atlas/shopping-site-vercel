@@ -51,7 +51,7 @@ export default function ProductForm(props) {
       setShort(oldData.short_desc);
       setLong(oldData.long_desc);
     }
-  }, [oldData]);
+  }, [oldData, setCategory, setName, setPrice, setShort, setLong, setStock]);
 
   const [photoList, setPhotoList] = useState(null);
   const photos = photoList ? [...photoList] : [];
