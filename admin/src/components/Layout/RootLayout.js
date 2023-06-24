@@ -1,5 +1,5 @@
 
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import MainNav from "./MainNav";
 import classes from "./RootLayout.module.css";
