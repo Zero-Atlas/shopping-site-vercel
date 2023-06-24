@@ -20,7 +20,6 @@ export default function ChatPage() {
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("");
   const [history, setHistory] = useState([]);
-  const [unread, setUnread] = useState([]);
 
   const getRoomHistoryHandler = async (roomId) => {
     setCurrentRoom(roomId);
