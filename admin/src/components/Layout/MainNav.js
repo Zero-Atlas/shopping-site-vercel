@@ -4,14 +4,34 @@ import { useEffect, useState } from "react";
 import { baseUrl } from "../../store/database";
 
 export default function MainNav() {
+  const navigate = useNavigate();
   const userData = useRouteLoaderData("root");
   const [isAuth, setIsAuth] = useState(false);
-
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  // load dashboard data if valid user logged in
   useEffect(() => {
     if (userData) setIsAuth(true);
-  }, [userData]);
 
-  const navigate = useNavigate();
+    //check if level is admin
+    fetch(`${baseUrl}/admin/check-level`, {
+      method: "get",
+      credentials: "include",
+    })
+      .then((respon) => {
+        if (!respon.ok) {
+          throw Error("Fail to check level");
+        }
+        return respon.json();
+      })
+      .then((data) => {
+        if (data.level === 2) {
+          return setIsAdmin(true)
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [userData, navigate]);
+
   const logoutHandler = async () => {
     const respon = await fetch(`${baseUrl}/logout`, {
       method: "post",
@@ -33,7 +53,8 @@ export default function MainNav() {
           <ul className={classes.list}>
             <li>
               <NavLink
-                to="/"
+                to={isAdmin?"/":"/chat"}
+                disabled={!isAdmin}
                 className={({ isActive }) =>
                   isActive ? classes.active : undefined
                 }
@@ -59,7 +80,8 @@ export default function MainNav() {
             {isAuth && (
               <li>
                 <NavLink
-                  to="/admin"
+                  disabled={!isAdmin}
+                  to={isAdmin?"/admin":"/chat"}
                   className={({ isActive }) =>
                     isActive ? classes.active : undefined
                   }
