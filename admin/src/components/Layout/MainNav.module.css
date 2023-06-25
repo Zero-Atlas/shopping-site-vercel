@@ -39,3 +39,8 @@
 .navbar i {
   color: #b1b0af;
 }
+
+.navbar a[disabled]{
+  color: #888;
+  cursor: not-allowed;
+}
