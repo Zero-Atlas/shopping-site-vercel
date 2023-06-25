@@ -9,11 +9,10 @@ export default function AdminRoot() {
   useEffect(() => {
     if (checkLevel) {
       if (checkLevel.level !== 2) {
-        alert(checkLevel.message);
-        navigate("/");
+        navigate("/chat");
       }
     } else {
-      navigate("/");
+      navigate("/login");
     }
   }, [checkLevel, navigate]);
   return (
