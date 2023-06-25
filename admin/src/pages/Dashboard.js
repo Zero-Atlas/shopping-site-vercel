@@ -15,8 +15,7 @@ export default function Dashboard() {
       0
     );
   }
-  console.log(dashboardData);
-
+  
   // load dashboard data if valid user logged in
   useEffect(() => {
     if (!userData) {
@@ -35,7 +34,6 @@ export default function Dashboard() {
       })
       .then((data) => {
         if (data.level === 1) {
-          alert("Adviser account can only use chat function.");
           return navigate("/chat");
         }
       })
